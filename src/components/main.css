@@ -1,0 +1,8 @@
+.events{
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 50px);
+}

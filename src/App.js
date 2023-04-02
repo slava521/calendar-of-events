@@ -1,13 +1,13 @@
 import './App.css';
 import {Container} from "@mui/material";
-import Calendar from "./components/calendar";
 import Header from "./components/Header";
+import Main from "./components/Main";
 function App() {
   return (
       <>
           <Header/>
-          <Container>
-              <Calendar/>
+          <Container sx={{mt:5}}>
+              <Main/>
           </Container>
       </>
   );
