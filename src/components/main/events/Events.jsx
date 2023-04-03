@@ -9,33 +9,35 @@ const Item = styled(Paper)(({theme}) => ({
     height: 60,
     lineHeight: '60px',
 }));
-const isCurrentDate = (elementDate, date) => {
+const isCurrentDate = (elementDate, currentDay, currentMonth, currentYear) => {
     let elementDayMonthYear = elementDate.split('.');
     elementDayMonthYear = elementDayMonthYear.map((el) => {
         return parseInt(el)
     })
-    let currentDay = date.getDate();
-    let currentMonth = date.getMonth() + 1;
-    let currentYear = date.getFullYear();
-    if (elementDayMonthYear[0] === currentDay && elementDayMonthYear[1] === currentMonth && elementDayMonthYear[2] === currentYear) {
-        return true;
-    }
-    return false;
+    return elementDayMonthYear[0] === currentDay && elementDayMonthYear[1] === currentMonth && elementDayMonthYear[2] === currentYear;
+
 }
 const isCurrentMonth = (elementDate, currentMonth, currentYear) => {
     let elementDayMonthYear = elementDate.split('.');
     elementDayMonthYear = elementDayMonthYear.map((el) => {
         return parseInt(el)
     })
-    if (elementDayMonthYear[1] === currentMonth && elementDayMonthYear[2] === currentYear) {
-        return true;
-    }
-    return false;
+    return elementDayMonthYear[1] === currentMonth && elementDayMonthYear[2] === currentYear;
+
 }
-const createEvents = (eventList, currentMonth, currentYear) => {
+const createEvents = (currentDate, eventList) => {
 
     return eventList.map((el) => {
-        if (isCurrentMonth(el.date, currentMonth, currentYear)) {
+        if (currentDate.isDateSelected){
+            if (isCurrentDate(el.date, currentDate.currentDay, currentDate.currentMonth, currentDate.currentYear)) {
+                return (
+                    <Item key={el.id} elevation={2}>
+                        {`${el.date}:${el.event}`}
+                    </Item>
+                )
+            }
+        }
+        else if (isCurrentMonth(el.date, currentDate.currentMonth, currentDate.currentYear)) {
             return (
                 <Item key={el.id} elevation={2}>
                     {`${el.date}:${el.event}`}
@@ -46,17 +48,11 @@ const createEvents = (eventList, currentMonth, currentYear) => {
 }
 
 class Events extends Component {
-
     render() {
         return (
-            <>
-                <Stack spacing={2}>
-
-                    {
-                        createEvents(this.props.state.events, this.props.state.currentMonth, this.props.state.currentYear)
-                    }
-                </Stack>
-            </>
+            <Stack spacing={2}>
+                {createEvents(this.props.state.currentDate, this.props.state.events)}
+            </Stack>
         )
     }
 }

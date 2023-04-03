@@ -3,6 +3,7 @@ import Events from "./events/Events";
 import {Divider, Grid, Typography} from "@mui/material";
 import AddEvent from "./events/AddEvent";
 import "./main.css"
+import ReturnToMonth from "./events/ReturnToMonth";
 
 const Main = (props)=>{
     return (
@@ -10,12 +11,13 @@ const Main = (props)=>{
             <Grid item md={7} xs={12}>
                 <Typography>Календарь</Typography>
                 <Divider/>
-                <Calendar state={props.state}/>
+                <Calendar currentDate={props.state.currentDate}/>
             </Grid>
             <Grid item md={5} xs={12}>
                 <Typography>События</Typography>
                 <Divider/>
                 <div className="events">
+                    <ReturnToMonth currentDate={props.state.currentDate}/>
                     <Events state={props.state}/>
                     <AddEvent/>
                 </div>
