@@ -17,6 +17,7 @@ const Main = (props)=>{
                 <Typography>События</Typography>
                 <Divider/>
                 <div className="events">
+                    <ReturnToMonth currentDate={props.state.currentDate}/>
                     <Events state={props.state}/>
                     <AddEvent/>
                 </div>
