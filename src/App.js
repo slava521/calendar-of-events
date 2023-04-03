@@ -1,13 +1,13 @@
 import './App.css';
 import {Container} from "@mui/material";
-import Header from "./components/Header";
-import Main from "./components/Main";
-function App() {
+import Header from "./components/header/Header";
+import Main from "./components/main/Main";
+function App(props) {
   return (
       <>
           <Header/>
           <Container sx={{mt:5}}>
-              <Main/>
+              <Main state={props.state}/>
           </Container>
       </>
   );

@@ -1,22 +1,22 @@
-import Calendar from "./Calendar";
-import Events from "./Events";
+import Calendar from "./calendar/Calendar";
+import Events from "./events/Events";
 import {Divider, Grid, Typography} from "@mui/material";
-import AddEvent from "./AddEvent";
+import AddEvent from "./events/AddEvent";
 import "./main.css"
 
-const Main = ()=>{
+const Main = (props)=>{
     return (
         <Grid container>
             <Grid item md={7} xs={12}>
                 <Typography>Календарь</Typography>
                 <Divider/>
-                <Calendar/>
+                <Calendar state={props.state}/>
             </Grid>
             <Grid item md={5} xs={12}>
                 <Typography>События</Typography>
                 <Divider/>
                 <div className="events">
-                    <Events/>
+                    <Events state={props.state}/>
                     <AddEvent/>
                 </div>
             </Grid>
