@@ -1,6 +1,5 @@
 import {root} from "./index";
-import App from "./App";
-import React from "react";
+import RenderPage from "./render";
 
 const date = new Date()
 let state = {
@@ -31,16 +30,29 @@ let state = {
             event: "hello worldssss",
         }
     ],
-    currentMonth: date.getMonth()+1,
-    currentYear: date.getFullYear(),
-    changeMonthYear:(date)=>{
-        state.currentMonth = date.$d.getMonth()+1;
-        state.currentYear = date.$d.getFullYear();
-        root.render(
-            <React.StrictMode>
-                <App state={state}/>
-            </React.StrictMode>
-        );
+    currentDate:{
+        currentDay:0,
+        currentMonth: date.getMonth()+1,
+        currentYear: date.getFullYear(),
+        isDateSelected: false,
+        changeDay:(date)=>{
+            state.currentDate.currentDay = date.$d.getDate();
+            console.log(state.currentDate.currentDay)
+        },
+        selectDate: ()=>{
+            state.currentDate.isDateSelected = true;
+            RenderPage(root);
+        },
+        showMonth:()=>{
+            state.currentDate.isDateSelected = false;
+            RenderPage(root);
+        },
+        changeMonthYear:(date)=>{
+            state.currentDate.currentMonth = date.$d.getMonth()+1;
+            state.currentDate.currentYear = date.$d.getFullYear();
+            state.currentDate.isDateSelected = false;
+            RenderPage(root)
+        },
     },
 }
 export default state;
