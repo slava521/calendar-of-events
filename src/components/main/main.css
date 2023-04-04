@@ -3,6 +3,11 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: end;
     height: calc(100% - 50px);
+}
+.eventlist{
+    height: calc(100% - 73px);
+    max-height: 196px;
+    overflow-y: auto;
 }

@@ -1,8 +1,10 @@
 import {root} from "./index";
 import RenderPage from "./render";
+import { IAppState } from "./types";
+
 
 const date = new Date()
-let state = {
+let state: IAppState = {
     events: [
         {
             id: 0,
@@ -33,6 +35,11 @@ let state = {
             id: 5,
             date: "06.04.2023",
             event: "hello worldsssss",
+        },
+        {
+            id: 6,
+            date: "05.04.2023",
+            event: "hello worldssssss",
         }
     ],
     currentDate:{
@@ -42,7 +49,8 @@ let state = {
         isDateSelected: false,
         changeDay:(date)=>{
             state.currentDate.currentDay = date.$d.getDate();
-            console.log(state.currentDate.currentDay)
+            console.log(state.currentDate.currentDay);
+            console.log(date);
         },
         selectDate: ()=>{
             state.currentDate.isDateSelected = true;
