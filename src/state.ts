@@ -1,8 +1,10 @@
 import {root} from "./index";
 import RenderPage from "./render";
+import { IAppState } from "./types";
+
 
 const date = new Date()
-let state = {
+let state: IAppState = {
     events: [
         {
             id: 0,

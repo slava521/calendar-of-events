@@ -1,7 +1,11 @@
+import React, { Component } from 'react';
 import {Paper, Stack, styled} from "@mui/material";
-import {Component} from "react";
 import ReturnToMonth from "./ReturnToMonth";
+import { IAppState } from '../../../types';
 
+type Props = {
+    state: IAppState;
+}
 
 const Item = styled(Paper)(({theme}) => ({
     ...theme.typography.body2,
@@ -48,7 +52,7 @@ const createEvents = (currentDate, eventList) => {
     })
 }
 
-class Events extends Component {
+class Events extends Component<Props, any> {
     render() {
         return (
             <div>
