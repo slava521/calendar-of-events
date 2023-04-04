@@ -3,7 +3,6 @@ import Events from "./events/Events";
 import {Divider, Grid, Typography} from "@mui/material";
 import AddEvent from "./events/AddEvent";
 import "./main.css"
-import ReturnToMonth from "./events/ReturnToMonth";
 
 const Main = (props)=>{
     return (

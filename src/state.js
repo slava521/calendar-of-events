@@ -28,6 +28,11 @@ let state = {
             id: 4,
             date: "06.04.2022",
             event: "hello worldssss",
+        },
+        {
+            id: 5,
+            date: "06.04.2023",
+            event: "hello worldsssss",
         }
     ],
     currentDate:{
