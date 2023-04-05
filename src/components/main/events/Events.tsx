@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Paper, Stack, styled, Typography} from "@mui/material";
-import {IAppState, ICalendarDateState, ICalendarEvent} from '../../../types';
+import { IAppState, ICalendarDateState, ICalendarEvent} from '../../../types';
 
 type Props = {
     state: IAppState;
