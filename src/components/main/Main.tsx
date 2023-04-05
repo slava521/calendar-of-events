@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Calendar from "./calendar/Calendar";
 import Events from "./events/Events";
-import {Divider, Grid, Typography} from "@mui/material";
+import {Box, Divider, Grid, Typography} from "@mui/material";
 import AddEvent from "./events/AddEvent";
 import "./main.css"
 import {IAppState} from "../../types";
@@ -23,13 +23,13 @@ class Main extends Component<Props, any> {
                 <Grid item md={5} xs={12}>
                     <Typography>События</Typography>
                     <Divider/>
-                    <div className="events">
+                    <Box className="events">
                         <ReturnToMonth currentDate={this.props.state.currentDate}/>
-                        <div className="eventlist">
+                        <Box className="eventlist">
                             <Events state={this.props.state}/>
-                        </div>
+                        </Box>
                         <AddEvent/>
-                    </div>
+                    </Box>
                 </Grid>
             </Grid>
         )

@@ -43,10 +43,11 @@ let state: IAppState = {
         }
     ],
     currentDate:{
-        currentDay:0,
+        currentDay: date.getDate(),
         currentMonth: date.getMonth()+1,
         currentYear: date.getFullYear(),
         isDateSelected: false,
+        isDateInNewMonthSelected: true,
         changeDay:(date)=>{
             state.currentDate.currentDay = date.$d.getDate();
             console.log(state.currentDate.currentDay);
@@ -54,6 +55,7 @@ let state: IAppState = {
         },
         selectDate: ()=>{
             state.currentDate.isDateSelected = true;
+            state.currentDate.isDateInNewMonthSelected = true;
             RenderPage(root);
         },
         showMonth:()=>{
@@ -64,6 +66,7 @@ let state: IAppState = {
             state.currentDate.currentMonth = date.$d.getMonth()+1;
             state.currentDate.currentYear = date.$d.getFullYear();
             state.currentDate.isDateSelected = false;
+            state.currentDate.isDateInNewMonthSelected = false;
             RenderPage(root)
         },
     },
