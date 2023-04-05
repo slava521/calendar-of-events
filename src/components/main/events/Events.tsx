@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Paper, Stack, styled} from "@mui/material";
+import {Paper, Stack, styled, Typography} from "@mui/material";
 import {IAppState, ICalendarDateState, ICalendarEvent} from '../../../types';
 
 type Props = {
@@ -34,9 +34,10 @@ const isCurrentMonth = (elementDate: string, currentMonth: number, currentYear: 
 
 }
 const createEvents = (currentDate: ICalendarDateState, eventList: Array<ICalendarEvent>) => {
-
-    return eventList.map((el) => {
-        if (currentDate.isDateSelected) {
+    let alert:string;
+    let currentEvents:Array<any>;
+    if (currentDate.isDateSelected) {
+        currentEvents = eventList.map((el) => {
             if (isCurrentDate(el.date, currentDate.currentDay, currentDate.currentMonth, currentDate.currentYear)) {
                 return (
                     <Item key={el.id} elevation={2}>
@@ -44,20 +45,47 @@ const createEvents = (currentDate: ICalendarDateState, eventList: Array<ICalenda
                     </Item>
                 )
             }
-        } else if (isCurrentMonth(el.date, currentDate.currentMonth, currentDate.currentYear)) {
-            return (
-                <Item key={el.id} elevation={2}>
-                    {`${el.date}:${el.event}`}
-                </Item>
-            )
-        }
-    })
+            else{
+                return false;
+            }
+        })
+        alert='В этот день нет событий'
+    } else{
+        currentEvents = eventList.map((el) => {
+            if (isCurrentMonth(el.date, currentDate.currentMonth, currentDate.currentYear)) {
+                return (
+                    <Item key={el.id} elevation={2}>
+                        {`${el.date}:${el.event}`}
+                    </Item>
+                )
+            }
+            else{
+                return false;
+            }
+        })
+        alert='В этом месяце нет событий'
+    }
+    let isNull = (events:Array<any>)=>{
+        return events.every((el)=>{
+            return !el;
+        })
+    }
+    if (!isNull(currentEvents)){
+        return currentEvents;
+    }
+    else{
+        return <>
+            <Typography sx={{mt:'25px'}}>{alert}</Typography>
+        </>
+
+    }
+
 }
 
 class Events extends Component<Props, any> {
     render() {
         return (
-            <Stack spacing={2}>
+            <Stack sx={{mb:'10px'}} spacing={2}>
                 {createEvents(this.props.state.currentDate, this.props.state.events)}
             </Stack>
         )
