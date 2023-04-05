@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Paper, Stack, styled, Typography} from "@mui/material";
-import {IAppState, ICalendarDateState, ICalendarEvent} from '../../../types';
+import { IAppState, ICalendarDateState, ICalendarEvent} from '../../../types';
 
 type Props = {
     state: IAppState;
@@ -33,53 +33,30 @@ const isCurrentMonth = (elementDate: string, currentMonth: number, currentYear: 
     return intElementDayMonthYear[1] === currentMonth && intElementDayMonthYear[2] === currentYear;
 
 }
+
+const eventsBuilderMap = {
+    day: {
+        checkCallback: (el: ICalendarEvent, date: ICalendarDateState) =>
+            isCurrentDate(el.date, date.currentDay, date.currentMonth, date.currentYear),
+        alert: 'В этот день нет событий'
+    },
+    month: {
+        checkCallback: (el: ICalendarEvent, date: ICalendarDateState) =>
+            isCurrentMonth(el.date, date.currentMonth, date.currentYear),
+        alert: 'В этом месяце нет событий'
+    }
+}
+
 const createEvents = (currentDate: ICalendarDateState, eventList: Array<ICalendarEvent>) => {
-    let alert:string;
-    let currentEvents:Array<any>;
-    if (currentDate.isDateSelected) {
-        currentEvents = eventList.map((el) => {
-            if (isCurrentDate(el.date, currentDate.currentDay, currentDate.currentMonth, currentDate.currentYear)) {
-                return (
-                    <Item key={el.id} elevation={2}>
-                        {`${el.date}:${el.event}`}
-                    </Item>
-                )
-            }
-            else{
-                return false;
-            }
-        })
-        alert='В этот день нет событий'
-    } else{
-        currentEvents = eventList.map((el) => {
-            if (isCurrentMonth(el.date, currentDate.currentMonth, currentDate.currentYear)) {
-                return (
-                    <Item key={el.id} elevation={2}>
-                        {`${el.date}:${el.event}`}
-                    </Item>
-                )
-            }
-            else{
-                return false;
-            }
-        })
-        alert='В этом месяце нет событий'
-    }
-    let isNull = (events:Array<any>)=>{
-        return events.every((el)=>{
-            return !el;
-        })
-    }
-    if (!isNull(currentEvents)){
-        return currentEvents;
-    }
-    else{
-        return <>
-            <Typography sx={{mt:'25px'}}>{alert}</Typography>
-        </>
+    const eventsBuilder = eventsBuilderMap[currentDate.isDateSelected ? 'day' : 'month'];
+    const currentEvents = eventList
+        .filter((el: ICalendarEvent) => eventsBuilder.checkCallback(el, currentDate))
+        .map((el: ICalendarEvent) => <Item key={el.id} elevation={2}>{`${el.date}:${el.event}`}</Item>);
+    const alert = eventsBuilder.alert;
 
-    }
-
+    return currentEvents?.length ? currentEvents : <>
+        <Typography sx={{ mt: '25px' }}>{alert}</Typography>
+    </>;
 }
 
 class Events extends Component<Props, any> {
