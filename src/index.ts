@@ -3,7 +3,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import RenderPage from "./render";
 
-export const root = ReactDOM.createRoot(document.getElementById('root'));
+export const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 RenderPage(root)
 
 // If you want to start measuring performance in your app, pass a function
