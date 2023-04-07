@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Calendar from "./calendar/Calendar";
 import Events from "./events/Events";
 import {Box, Divider, Grid, Typography} from "@mui/material";
-import AddEvent from "./events/AddEvent";
+import AddEvent from "./events/addEvent/AddEvent";
 import "./main.css"
 import {IAppState} from "../../types";
 import ReturnToMonth from "./events/ReturnToMonth";
@@ -24,11 +24,11 @@ class Main extends Component<Props, any> {
                     <Typography>События</Typography>
                     <Divider/>
                     <Box className="events">
-                        <ReturnToMonth currentDate={this.props.state.currentDate}/>
-                        <Box className="eventlist">
+                        <ReturnToMonth state={this.props.state}/>
+                        <Box className="eventList">
                             <Events state={this.props.state}/>
                         </Box>
-                        <AddEvent/>
+                        <AddEvent addEvents={this.props.state.addEvents}/>
                     </Box>
                 </Grid>
             </Grid>

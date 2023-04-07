@@ -15,7 +15,7 @@ class Calendar extends Component<Props, any> {
             this.props.currentDate.selectDate();
         }
         return (
-            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
                 {<DateCalendar value={null} onChange={showDayEvents} onMonthChange={this.props.currentDate.changeMonthYear} onYearChange={this.props.currentDate.changeMonthYear}/>}
             </LocalizationProvider>
         )
