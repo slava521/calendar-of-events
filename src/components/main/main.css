@@ -3,7 +3,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     height: calc(100% - 50px);
 }
 .eventList{
