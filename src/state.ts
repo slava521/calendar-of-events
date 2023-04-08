@@ -79,7 +79,7 @@ let state: IAppState = {
             RenderPage(root);
         },
         addEventFunction:(event:string)=>{
-            let newId:number = !state.events ? state.events[state.events.length-1].id+1 : 0;
+            let newId:number = state.events.length ? state.events[state.events.length-1].id+1 : 0;
             let newEvent:ICalendarEvent = new class implements ICalendarEvent {
                 date: string = `${state.currentDate.currentMonth}.${state.currentDate.currentDay}.${state.currentDate.currentYear}`;
                 event: string = event;
