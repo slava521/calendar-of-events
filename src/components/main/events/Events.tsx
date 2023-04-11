@@ -19,32 +19,24 @@ const Item = styled(Paper)(({theme}) => ({
     marginTop: '10px',
 
 }));
-const isCurrentDate = (elementDate: string, currentDay: number, currentMonth: number, currentYear: number) => {
-    let elementDayMonthYear = elementDate.split('.');
-    let intElementDayMonthYear = elementDayMonthYear.map((el) => {
-        return parseInt(el)
-    })
-    return intElementDayMonthYear[1] === currentDay && intElementDayMonthYear[0] === currentMonth && intElementDayMonthYear[2] === currentYear;
+const isCurrentDate = (elementDate: dayjs.Dayjs, currentDay: number, currentMonth: number, currentYear: number) => {
+    return elementDate.date() === currentDay && elementDate.month()+1 === currentMonth && elementDate.year() === currentYear;
 
 }
-const isCurrentMonth = (elementDate: string, currentMonth: number, currentYear: number) => {
-    let elementDayMonthYear = elementDate.split('.');
-    let intElementDayMonthYear = elementDayMonthYear.map((el) => {
-        return parseInt(el)
-    })
-    return intElementDayMonthYear[0] === currentMonth && intElementDayMonthYear[2] === currentYear;
+const isCurrentMonth = (elementDate: dayjs.Dayjs, currentMonth: number, currentYear: number) => {
+    return elementDate.month()+1 === currentMonth && elementDate.year() === currentYear
 
 }
 
 const eventsBuilderMap = {
     day: {
         checkCallback: (el: ICalendarEvent, date: ICalendarDateState) =>
-            isCurrentDate(el.date, date.currentDay, date.currentMonth, date.currentYear),
+            isCurrentDate(dayjs(el.date) , date.currentDay, date.currentMonth, date.currentYear),
         alert: 'В этот день нет событий'
     },
     month: {
         checkCallback: (el: ICalendarEvent, date: ICalendarDateState) =>
-            isCurrentMonth(el.date, date.currentMonth, date.currentYear),
+            isCurrentMonth(dayjs(el.date), date.currentMonth, date.currentYear),
         alert: 'В этом месяце нет событий'
     }
 }
@@ -66,7 +58,7 @@ class Events extends Component<Props, any> {
         return (
             <Stack sx={{mb:'10px'}} spacing={2}>
                 {!this.props.state.addEvents.isOpenedAddEventForm && createEvents(this.props.state.currentDate, this.props.state.events)}
-                {this.props.state.addEvents.isOpenedAddEventForm && <AddEventForm currentDate={this.props.state.currentDate}/>}
+                {this.props.state.addEvents.isOpenedAddEventForm && <AddEventForm currentDate={this.props.state.currentDate} addEvent={this.props.state.addEvents}/>}
             </Stack>
         )
     }

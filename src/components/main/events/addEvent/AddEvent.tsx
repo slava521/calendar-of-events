@@ -14,37 +14,33 @@ class AddEvent extends Component<Props,State> {
     state: State = {
         open: false,
     }
-    setOpen(isOpen){
-        this.setState(()=>({
-            open:isOpen
-        }));
+    setOpen(open: boolean): void {
+        this.setState(()=>({open}));
     }
     handleClose=()=>{
         this.setOpen(false)
     }
-    addEvent(addEventFunc){
-        const eventInput = document.getElementById('eventInput') as HTMLInputElement;
-
-        if (!eventInput.value){
+    addEvent=()=>{
+        if (!this.props.addEvents.formValue){
             this.setOpen(true)
         }
         else {
-            let tempValue = eventInput.value;
-            eventInput.value='';
-            addEventFunc(tempValue)
+            this.props.addEvents.addEventFunction()
+            this.props.addEvents.changeFormValue('')
         }
     }
+    readonly snackbarDisplayTime = 3000;
     render() {
         return(
             <>
                 {!this.props.addEvents.isOpenedAddEventForm && <Button id="openForm" variant="contained" sx={{mt:'15px',mb:'15px'}} onClick={this.props.addEvents.openAddEventForm}>Добавить событие</Button>}
                 {this.props.addEvents.isOpenedAddEventForm &&
                     <ButtonGroup variant="contained" sx={{mt:'15px',mb:'15px'}}>
-                        <Button id="addEvent" sx={{width:'50%'}} onClick={()=>this.addEvent(this.props.addEvents.addEventFunction)}>Добавить</Button>
+                        <Button sx={{width:'50%'}} onClick={this.addEvent}>Добавить</Button>
                         <Button sx={{width:'50%'}} onClick={this.props.addEvents.closeAddEventForm}>Отмена</Button>
                     </ButtonGroup>
                 }
-                <Snackbar open={this.state.open} autoHideDuration={3000} onClose={this.handleClose}>
+                <Snackbar open={this.state.open} autoHideDuration={this.snackbarDisplayTime} onClose={this.handleClose}>
                     <Alert onClose={this.handleClose} severity="warning">Введите хотя бы один символ</Alert>
                 </Snackbar>
             </>

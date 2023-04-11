@@ -76,20 +76,25 @@ let state: IAppState = {
         },
         closeAddEventForm:()=>{
             state.addEvents.isOpenedAddEventForm = false;
+            state.addEvents.formValue = '';
             RenderPage(root);
         },
-        addEventFunction:(event:string)=>{
-            let newId:number = state.events.length ? state.events[state.events.length-1].id+1 : 0;
-            let newEvent:ICalendarEvent = new class implements ICalendarEvent {
-                date: string = `${state.currentDate.currentMonth}.${state.currentDate.currentDay}.${state.currentDate.currentYear}`;
-                event: string = event;
-                id: number = newId;
+        addEventFunction:()=>{
+            let newId:number = state.events?.length ? state.events[state.events.length-1].id+1 : 0;
+            let newEvent:ICalendarEvent = {
+                date: `${state.currentDate.currentMonth}.${state.currentDate.currentDay}.${state.currentDate.currentYear}`,
+                event: state.addEvents.formValue,
+                id: newId,
             }
             state.events.push(newEvent)
             state.addEvents.isOpenedAddEventForm = false;
             RenderPage(root);
         },
-
+        formValue: '',
+        changeFormValue: (value:string)=>{
+            state.addEvents.formValue = value;
+            RenderPage(root);
+        }
     }
 }
 export default state;

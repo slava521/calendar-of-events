@@ -1,6 +1,8 @@
-export interface IAddEventsState{
+export interface IAddEventsState {
     isOpenedAddEventForm: boolean;
-    openAddEventForm: ()=>void;
-    closeAddEventForm: ()=>void;
-    addEventFunction: (event:string)=>void;
+    openAddEventForm: () => void;
+    closeAddEventForm: () => void;
+    addEventFunction: () => void;
+    formValue: string;
+    changeFormValue: (value: string) => void;
 }
