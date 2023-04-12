@@ -6,41 +6,41 @@ import {IAppState, ICalendarEvent} from "./types";
 const date = new Date()
 let state: IAppState = {
     events: [
-        {
-            id: 0,
-            date: "04.02.2023",
-            event: "hello world",
-        },
-        {
-            id: 1,
-            date: "04.06.2023",
-            event: "hello worlds",
-        },
-        {
-            id: 2,
-            date: "03.03.2023",
-            event: "hello worldss",
-        },
-        {
-            id: 3,
-            date: "03.06.2023",
-            event: "hello worldsss",
-        },
-        {
-            id: 4,
-            date: "04.06.2022",
-            event: "hello worldssss",
-        },
-        {
-            id: 5,
-            date: "04.06.2023",
-            event: "hello worldsssss",
-        },
-        {
-            id: 6,
-            date: "04.05.2023",
-            event: "hello worldssssss",
-        }
+        // {
+        //     id: 0,
+        //     date: "04.02.2023",
+        //     event: "hello world",
+        // },
+        // {
+        //     id: 1,
+        //     date: "04.06.2023",
+        //     event: "hello worlds",
+        // },
+        // {
+        //     id: 2,
+        //     date: "03.03.2023",
+        //     event: "hello worldss",
+        // },
+        // {
+        //     id: 3,
+        //     date: "03.06.2023",
+        //     event: "hello worldsss",
+        // },
+        // {
+        //     id: 4,
+        //     date: "04.06.2022",
+        //     event: "hello worldssss",
+        // },
+        // {
+        //     id: 5,
+        //     date: "04.06.2023",
+        //     event: "hello worldsssss",
+        // },
+        // {
+        //     id: 6,
+        //     date: "04.05.2023",
+        //     event: "hello worldssssss",
+        // }
     ],
     currentDate:{
         currentDay: date.getDate(),

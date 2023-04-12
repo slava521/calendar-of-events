@@ -12,7 +12,7 @@ const Item = styled(Paper)(({theme}) => ({
     ...theme.typography.body2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height: 60,
+    minHeight: 60,
     lineHeight: '60px',
     width: '95%',
     marginLeft: '2.5% !important',
