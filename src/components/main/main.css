@@ -6,7 +6,7 @@
     justify-content: flex-end;
     height: calc(100% - 50px);
 }
-.eventlist{
+.eventList{
     min-height: 80px;
     height: calc(100% - 73px);
     max-height: 196px;
