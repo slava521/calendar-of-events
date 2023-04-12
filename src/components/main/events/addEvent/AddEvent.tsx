@@ -17,10 +17,10 @@ class AddEvent extends Component<Props,State> {
     setOpen(open: boolean): void {
         this.setState(()=>({open}));
     }
-    handleClose=()=>{
+    handleClose=(): void=>{
         this.setOpen(false)
     }
-    addEvent=()=>{
+    addEvent=(): void=>{
         if (!this.props.addEvents.formValue){
             this.setOpen(true)
         }

@@ -11,7 +11,7 @@ type Props = {
     addEvent: IAddEventsState;
 }
 class AddEventForm extends Component<Props, any> {
-    get defaultDateValue() {
+    get defaultDateValue():dayjs.Dayjs {
         return dayjs(`${this.props.currentDate.currentMonth}.${this.props.currentDate.currentDay}.${this.props.currentDate.currentYear}`).locale('ru');
     }
     render() {

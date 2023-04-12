@@ -48,19 +48,19 @@ let state: IAppState = {
         currentYear: date.getFullYear(),
         isDateSelected: true,
         isDateInNewMonthSelected: true,
-        changeDay:(date)=>{
+        changeDay:(date): void=>{
             state.currentDate.currentDay = date.$d.getDate();
         },
-        selectDate: ()=>{
+        selectDate: (): void=>{
             state.currentDate.isDateSelected = true;
             state.currentDate.isDateInNewMonthSelected = true;
             RenderPage(root);
         },
-        showMonth:()=>{
+        showMonth:(): void=>{
             state.currentDate.isDateSelected = false;
             RenderPage(root);
         },
-        changeMonthYear:(date)=>{
+        changeMonthYear:(date): void=>{
             state.currentDate.currentMonth = date.$d.getMonth()+1;
             state.currentDate.currentYear = date.$d.getFullYear();
             state.currentDate.isDateSelected = false;
@@ -70,16 +70,16 @@ let state: IAppState = {
     },
     addEvents:{
         isOpenedAddEventForm:false,
-        openAddEventForm:()=>{
+        openAddEventForm:(): void=>{
             state.addEvents.isOpenedAddEventForm = true;
             RenderPage(root);
         },
-        closeAddEventForm:()=>{
+        closeAddEventForm:(): void=>{
             state.addEvents.isOpenedAddEventForm = false;
             state.addEvents.formValue = '';
             RenderPage(root);
         },
-        addEventFunction:()=>{
+        addEventFunction:(): void=>{
             let newId:number = state.events?.length ? state.events[state.events.length-1].id+1 : 0;
             let newEvent:ICalendarEvent = {
                 date: `${state.currentDate.currentMonth}.${state.currentDate.currentDay}.${state.currentDate.currentYear}`,
@@ -91,7 +91,7 @@ let state: IAppState = {
             RenderPage(root);
         },
         formValue: '',
-        changeFormValue: (value:string)=>{
+        changeFormValue: (value:string): void=>{
             state.addEvents.formValue = value;
             RenderPage(root);
         }
